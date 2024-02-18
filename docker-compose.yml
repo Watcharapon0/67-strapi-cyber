@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  app:
+    image: arttid99/strapi:1.0.0
+    container_name: 67-ced-strapi
+    environment:
+      - DATABASE_CLINET=postgres
+      - DATABASE_HOST=172.20.10.2
+      - DATABASE_PORT=5400
+      - DATABASE_NAME=wat_db
+      - DATABASE_USERNAME=admin
+      - DATABASE_PASSWORD=1234
