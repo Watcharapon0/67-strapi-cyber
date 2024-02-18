@@ -1,7 +1,7 @@
 version: '3'
 services: # Include of
   strapi_server:
-    image: arttid99/strapi:1.0.1
+    image: arttid99/strapi:1.0.0
     container_name: 67-ced-strapi_server
     restart: unless-stopped
     env_file: .env
