@@ -1,13 +1,27 @@
 version: '3'
-
-services:
-  app:
-    image: arttid99/strapi:1.0.0
-    container_name: 67-ced-strapi
+services: # Include of
+  strapi_server:
+    image: arttid/strapi:1.0.1
+    container_name: 67-ced-strapi_server
+    restart: unless-stopped
+    env_file: .env
     environment:
-      - DATABASE_CLINET=postgres
-      - DATABASE_HOST=172.20.10.2
-      - DATABASE_PORT=5400
-      - DATABASE_NAME=wat_db
-      - DATABASE_USERNAME=admin
-      - DATABASE_PASSWORD=1234
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_HOST: db
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+    depends_on:
+      - db
+    ports:
+      - 1337:1337 
+  db:
+    image: postgres:13
+    container_name: 67-ced-db
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      POSTGRES_USER: ${DATABASE_USERNAME}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
