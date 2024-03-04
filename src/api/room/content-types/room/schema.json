@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "rooms",
+  "info": {
+    "singularName": "room",
+    "pluralName": "rooms",
+    "displayName": "room"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "idRoom": {
+      "type": "uid"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}
