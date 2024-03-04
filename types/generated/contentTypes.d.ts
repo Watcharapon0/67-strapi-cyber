@@ -798,6 +798,26 @@ export interface ApiClassroomClassroom extends Schema.CollectionType {
     name: Attribute.String;
     start_time: Attribute.DateTime;
     end_time: Attribute.DateTime;
+    teacher: Attribute.Relation<
+      'api::classroom.classroom',
+      'manyToOne',
+      'api::teacher.teacher'
+    >;
+    students: Attribute.Relation<
+      'api::classroom.classroom',
+      'manyToMany',
+      'api::student.student'
+    >;
+    room: Attribute.Relation<
+      'api::classroom.classroom',
+      'manyToOne',
+      'api::room.room'
+    >;
+    subject: Attribute.Relation<
+      'api::classroom.classroom',
+      'manyToOne',
+      'api::subject.subject'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -822,6 +842,7 @@ export interface ApiRoomRoom extends Schema.CollectionType {
     singularName: 'room';
     pluralName: 'rooms';
     displayName: 'room';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -829,6 +850,11 @@ export interface ApiRoomRoom extends Schema.CollectionType {
   attributes: {
     idRoom: Attribute.UID;
     name: Attribute.String;
+    classrooms: Attribute.Relation<
+      'api::room.room',
+      'oneToMany',
+      'api::classroom.classroom'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -845,6 +871,7 @@ export interface ApiStudentStudent extends Schema.CollectionType {
     singularName: 'student';
     pluralName: 'students';
     displayName: 'student';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -858,6 +885,11 @@ export interface ApiStudentStudent extends Schema.CollectionType {
         minLength: 10;
         maxLength: 10;
       }>;
+    classrooms: Attribute.Relation<
+      'api::student.student',
+      'manyToMany',
+      'api::classroom.classroom'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -882,6 +914,7 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
     singularName: 'subject';
     pluralName: 'subjects';
     displayName: 'subject';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -890,6 +923,11 @@ export interface ApiSubjectSubject extends Schema.CollectionType {
     idSubject: Attribute.UID;
     name: Attribute.String;
     description: Attribute.String;
+    classrooms: Attribute.Relation<
+      'api::subject.subject',
+      'oneToMany',
+      'api::classroom.classroom'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -914,6 +952,7 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
     singularName: 'teacher';
     pluralName: 'teachers';
     displayName: 'teacher';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -927,6 +966,11 @@ export interface ApiTeacherTeacher extends Schema.CollectionType {
         minLength: 10;
         maxLength: 10;
       }>;
+    classrooms: Attribute.Relation<
+      'api::teacher.teacher',
+      'oneToMany',
+      'api::classroom.classroom'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

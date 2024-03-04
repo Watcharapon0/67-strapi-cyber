@@ -4,7 +4,8 @@
   "info": {
     "singularName": "room",
     "pluralName": "rooms",
-    "displayName": "room"
+    "displayName": "room",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,12 @@
     },
     "name": {
       "type": "string"
+    },
+    "classrooms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::classroom.classroom",
+      "mappedBy": "room"
     }
   }
 }

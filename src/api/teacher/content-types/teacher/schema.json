@@ -4,7 +4,8 @@
   "info": {
     "singularName": "teacher",
     "pluralName": "teachers",
-    "displayName": "teacher"
+    "displayName": "teacher",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -24,6 +25,12 @@
       "type": "string",
       "maxLength": 10,
       "minLength": 10
+    },
+    "classrooms": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::classroom.classroom",
+      "mappedBy": "teacher"
     }
   }
 }
